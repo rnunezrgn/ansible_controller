@@ -26,7 +26,7 @@
       var: template_vars
 
   - name: We're making templates!!
-    ansible.controller.job_template:
+    tower_job_template:
       name: "{{ item.template_name }}"
       job_type: "run"
       organization: "{{ item.organization }}"
