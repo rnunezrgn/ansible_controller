@@ -18,7 +18,7 @@
       path: ./files/templates.csv
       fieldnames: template_name,organization,inventory,project,playbook,credential
       delimiter: ','
-      key: hostname
+      key: template_name
     register: template_vars
     delegate_to: localhost
 
