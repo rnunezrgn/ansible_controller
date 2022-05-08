@@ -1,0 +1,19 @@
+---
+- name: Adding a project
+  hosts: aap212-aws
+  gather_facts: false
+
+  collections:
+    - ansible.controller
+
+  tasks:
+    - name: Add project
+      project:
+        name: "test project"
+        description: "this is a test"
+        organization: "Systems"
+        scm_type: "git"
+        scm_url: "https://gitlab.com/mlowcher/aws_infra.git"
+        scm_update_on_launch: false
+        state: present
+        controller_config_file: "/home/mark/tower_cli.cfg"

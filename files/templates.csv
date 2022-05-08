@@ -1,0 +1,3 @@
+template_name,organization,inventory,project,playbook,credential
+first_template,Systems,vshpere_inventory,aws_infra,createvms.yml,linux_cred
+second_template,Systems,vshpere_inventory,linux-aws,createvpc.yml,linux_cred

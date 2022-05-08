@@ -1,0 +1,33 @@
+---
+- name: adding templates
+  hosts: localhost
+  connection: local
+  gather_facts: true 
+  vars:
+    template_name: ''
+    organization: ''
+    inventory: ''
+    project: ''
+    playbook: ''
+    credential: ''
+
+  tasks:
+
+  - name: Reading variables from CSV file
+    community.general.read_csv:
+      path: ./files/templates.csv
+      key: template_name
+      #delimiter: ','
+    register: template_vars
+    delegate_to: localhost
+
+  - name: Here are my vars from the spreadsheet
+    debug:
+      msg:  "{{ item.key }}:
+            {{ item.template_name }},
+            {{ item.organization }},
+            {{ item.inventory }},
+            {{ item.project }},
+            {{ item.playbook }},
+            {{ item.credential }}"
+      loop: "{{ template_vars.dict|dict2items }}"

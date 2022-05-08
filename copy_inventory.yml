@@ -1,0 +1,13 @@
+---
+hosts: old aap 
+gather_facts: false 
+vars:
+
+tasks:
+  - name: Copy inventory
+    inventory:
+      name: Copy Foo Inventory
+      copy_from: Default Inventory
+      description: "Our Foo Cloud Servers"
+      organization: Foo
+      state: present

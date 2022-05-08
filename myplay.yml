@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  tasks:
+    - read_csv:
+        path: vms.csv
+        key: hostname
+      register: vms
+    - debug:
+        msg: "{{ item.key }}:
+              {{ item.value.hostname }},
+              {{ item.value.partition }},
+              {{ item.value.ip }}"
+      loop: "{{ vms.dict|dict2items }}"

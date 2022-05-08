@@ -1,0 +1,33 @@
+---
+- name: Adding a project
+  hosts: aap212-aws
+  gather_facts: true
+  vars:
+    project_name: ''
+    description: ''
+    organization: ''
+    scm_url: ''
+
+
+  tasks:
+
+    - name: Reading variables from CSV file
+      community.general.read_csv:
+        path: ../files/projects.csv
+        fieldnames: project_name,description,organization,scm_url
+        delimiter: ','
+      register: project_vars
+      delegate_to: localhost
+
+    - name: Add project
+      ansible.controller.project:
+        name: "{{ item.project_name }}"
+        description: "VMware Rest project"
+        organization: "{{ item.organization }}"
+        scm_type: "git"
+        scm_url: "{{ scm_url }}"
+        scm_update_on_launch: false
+        state: present
+        controller_config_file: "~/tower_cli.cfg"
+      with_items: "{{ project_vars }}"
+...
