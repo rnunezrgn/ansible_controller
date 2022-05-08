@@ -24,7 +24,13 @@
   - name: Here are my vars from the spreadsheet
     debug:
       var: template_vars
-
+      
+  - name: Unflattened list
+    debug:
+      msg: "{{item.template_name}} {{item.organization}} {{item.inventory}"
+    loop:
+      "{{ template_vars }}"
+        
   - name: We're making templates!!
     tower_job_template:
       name: "{{ item.template_name }}"
