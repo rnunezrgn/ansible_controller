@@ -44,6 +44,6 @@
       state: "present"
     #with_items: "{{ template_vars }}"
     #loop: "{{ templates_vars.dict|dict2items }}"
-    loop: "{{ template_vars.list }}"
+    loop: "{{ template_vars.dict }}"
     #loop_control:
     #  loop_var: user
