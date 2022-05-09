@@ -25,12 +25,12 @@
     debug:
       var: template_vars
 
-  - debug: 
-      msg: "{{ user.template_name }} and inventory is {{ user.inventory }}"
-    loop: "{{ template_vars.list }}"
-    loop_control:
-      loop_var: user
-    delegate_to: localhost
+ # - debug: 
+ #     msg: "{{ user.template_name }} and inventory is {{ user.inventory }}"
+ #   loop: "{{ template_vars.list }}"
+ #   loop_control:
+ #     loop_var: user
+ #   delegate_to: localhost
 
   - name: We're making templates!!
     tower_job_template:
@@ -45,5 +45,5 @@
     #with_items: "{{ template_vars }}"
     #loop: "{{ templates_vars.dict|dict2items }}"
     loop: "{{ template_vars.list }}"
-    loop_control:
-      loop_var: user
+    #loop_control:
+    #  loop_var: user
