@@ -30,6 +30,7 @@
     loop: "{{ template_vars.list }}"
     loop_control:
       loop_var: user
+    delegate_to: localhost
 
   - name: We're making templates!!
     tower_job_template:
