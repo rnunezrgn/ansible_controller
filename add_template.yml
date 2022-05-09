@@ -12,7 +12,6 @@
     credential: ''
 
   tasks:
-
   - name: Reading variables from CSV file
     read_csv:
       path: ./files/templates.csv
@@ -28,7 +27,7 @@
 
   - debug: 
       msg: "{{ user.template_name }} and inventory is {{ user.inventory }}"
-    loop: "{{ userlist.list }}"
+    loop: "{{ template_vars.list }}"
     loop_control:
       loop_var: user
 
