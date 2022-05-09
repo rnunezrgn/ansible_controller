@@ -15,7 +15,7 @@
   - name: Reading variables from CSV file
     read_csv:
       path: ./files/templates.csv
-      fieldnames: template_name,organization,inventory,project,playbook,credential
+      fieldnames: templatename,organization,inventory,project,playbook,credential
       delimiter: ','
       key: templatename
     register: templatevars
