@@ -4,7 +4,7 @@
   connection: local
   gather_facts: true 
   vars:
-    template_name: ''
+    templatename: ''
     organization: ''
     inventory: ''
     project: ''
@@ -17,24 +17,24 @@
       path: ./files/templates.csv
       fieldnames: template_name,organization,inventory,project,playbook,credential
       delimiter: ','
-      key: template_name
-    register: template_vars
+      key: templatename
+    register: templatevars
     delegate_to: localhost
 
   - name: Here are my vars from the spreadsheet
     debug:
-      var: template_vars
+      var: templatevars
 
  # - debug: 
  #     msg: "{{ user.template_name }} and inventory is {{ user.inventory }}"
- #   loop: "{{ template_vars.list }}"
+ #   loop: "{{ templatevars.list }}"
  #   loop_control:
  #     loop_var: user
  #   delegate_to: localhost
 
   - name: We're making templates!!
     tower_job_template:
-      name: "{{ item.template_name }}"
+      name: "{{ item.templatename }}"
       job_type: "run"
       organization: "{{ item.organization }}"
       inventory: "{{ item.inventory }}"
@@ -42,8 +42,8 @@
       playbook: "{{ item.playbook }}"
       credentials: "{{ item.credential }}"
       state: "present"
-    #with_items: "{{ template_vars }}"
-    loop: "{{ templates_vars.dict|dict2items }}"
-    #loop: "{{ template_vars.dict }}"
+    #with_items: "{{ templatevars }}"
+    loop: "{{ templatesvars.dict|dict2items }}"
+    #loop: "{{ templatevars.dict }}"
     #loop_control:
     #  loop_var: user
