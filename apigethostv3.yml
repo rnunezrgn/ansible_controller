@@ -1,5 +1,5 @@
 ---
-- name: Query API for Hosts over 90 days
+- name: Query API for Hosts
   hosts: localhost
   gather_facts: False
 
